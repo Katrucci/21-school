@@ -1,0 +1,54 @@
+# Compiled files
+*.class
+*.log
+*.tmp
+*.temp
+
+# Build output
+/build/
+/out/
+/target/
+
+# Gradle
+.gradle/
+gradle-app.setting
+!gradle/wrapper/gradle-wrapper.jar
+/gradle/wrapper/gradle-wrapper.properties
+
+# IntelliJ IDEA (ВСЁ!)
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+.idea_modules/
+/.idea/workspace.xml
+/.idea/tasks.xml
+/.idea/usage.statistics.xml
+/.idea/dictionaries/
+
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Test / run configs
+/.run/
+*.run.xml
+
+# Database
+*.db
+*.sql
+*.sqlite
+
+# VS Code
+.vscode/
+
+# Security
+/secrets/
+*.jks
+*.pem
+*.p12
+application-*.properties
+application-*.yml

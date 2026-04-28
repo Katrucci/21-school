@@ -1,0 +1,455 @@
+@font-face {
+    font-family: "Drevnerusskij";
+    src: url('fonts/Drevnerusskij Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html,
+body,
+button,
+.primary-btn {
+    font-family: "Drevnerusskij", sans-serif;
+}
+
+:root {
+    --bg-color: #000;
+    --card-color: #000;
+    --x-color: #F20505;
+    --o-color: #B3ECF2;
+    --text-color: #468686;
+    --hover-color: #072424;
+}
+
+/* ===== ИСПРАВЛЕНО: прокрутка ===== */
+html {
+    height: 100%;
+    overflow-y: auto;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;  /* ИСПРАВЛЕНО: было center */
+    min-height: 100vh;        /* ИСПРАВЛЕНО: было height */
+    margin: 0;
+    padding: 20px 0;          /* ДОБАВЛЕНО: отступы сверху/снизу */
+    overflow-y: auto;         /* ДОБАВЛЕНО: прокрутка */
+}
+
+/* .game-container { ... } */
+
+.container {
+    box-sizing: border-box;
+    width: 90%;
+    max-width: 1100px;
+    padding: 40px;
+    margin: 2rem auto;
+    background: var(--card-color);
+    border-radius: 20px;
+    box-shadow: 0 5px 5px #041414;
+    text-align: center;
+}
+
+.score-board {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1.8rem 0;
+    background: var(--card-color);
+    padding: 1.8rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 5px #041414;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 0px;
+    margin-bottom: 4rem;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-content: center;
+}
+
+html, body {
+    cursor: url("image/Emmoochroom.cur"), pointer;
+}
+
+.cell {
+    background: var(--card-color);
+    box-shadow: 0 5px 5px #041414;
+    min-width: 100px;
+    min-height: 100px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    width: var(--cell-size);
+    height: var(--cell-size);
+    box-sizing: border-box;
+}
+
+.cell:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px #072424;
+    background: var(--hover-color);
+}
+
+.cell.x {
+    color: var(--x-color);
+}
+
+.cell.o {
+    color: var(--o-color);
+}
+
+.cpu-score,
+.player-score,
+.vs {
+    font-size: 1.8rem;
+}
+
+#status {
+    height: 2.5rem;
+    line-height: 2.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+#status.finished {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--o-color);
+    text-shadow: 0 0 10px rgba(78, 204, 163, 0.5);
+}
+
+.buttons-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.primary-btn:hover {
+    cursor: url("image/Emmoochroom.cur"), pointer;
+    background: var(--hover-color);
+}
+
+.buttons-container .primary-btn {
+    flex: 1;
+    max-width: 600px;
+    padding: 20px 40px;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.primary-btn {
+    background: var(--card-color);
+    color: var(--text-color);
+    border: 1px solid #041414;
+    padding: 20px 300px;
+    border-radius: 10px;
+    box-shadow: 0 5px 5px #041414;
+    font-size: 1.8rem;
+    transition: background 0.3s;
+}
+
+/* ===== УДАЛИТЬ: закомментированные анимации ===== */
+/* @keyframes appearanceX { ... } */
+/* @keyframes appearanceO { ... } */
+
+body,
+button,
+.primary-btn,
+#start-btn,
+#logout-btn,
+.cell {
+    cursor: url("/image/Emmoochroom.cur"), pointer;
+}
+
+.game-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.mode-selector {
+    margin: 1.5rem 0;
+    padding: 2rem;
+    background: var(--card-color);
+    border-radius: 15px;
+    box-shadow: 0 5px 5px #041414;
+    border: 1px solid #041414;
+}
+
+.mode-selector label {
+    display: block;
+    margin: 1rem 0;
+    cursor: url("/image/Emmoochroom.cur"), pointer;
+    font-size: 1.4rem;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    padding: 0.8rem;
+    border-radius: 10px;
+}
+
+.mode-selector label:hover {
+    background: var(--hover-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px #072424;
+}
+
+.mode-selector input[type="radio"] {
+    margin-right: 1rem;
+    accent-color: var(--x-color);
+    transform: scale(1.2);
+    cursor: url("/image/Emmoochroom.cur"), pointer;
+}
+
+#available-games-section {
+    margin: 2rem 0;
+    padding: 2rem;
+    background: var(--card-color);
+    border-radius: 15px;
+    box-shadow: 0 5px 5px #041414;
+    border: 1px solid #041414;
+}
+
+#available-games-section h3 {
+    color: var(--text-color);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 2px #041414;
+}
+
+.game-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem;
+    margin: 0.8rem 0;
+    background: var(--bg-color);
+    border: 1px solid #041414;
+    border-radius: 10px;
+    box-shadow: 0 3px 3px #041414;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.game-item:hover {
+    background: var(--hover-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px #072424;
+}
+
+.btn-primary,
+.btn-secondary {
+    background: var(--card-color);
+    color: var(--text-color);
+    border: 1px solid #041414;
+    padding: 1.5rem 3rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 5px #041414;
+    font-size: 1.6rem;
+    font-family: "Drevnerusskij", sans-serif;
+    transition: all 0.3s ease;
+    cursor: url("/image/Emmoochroom.cur"), pointer;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+    background: var(--hover-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 12px #072424;
+}
+
+.btn-small {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.2rem;
+    background: var(--card-color);
+    color: var(--o-color);
+    border: 1px solid var(--o-color);
+    border-radius: 8px;
+    font-family: "Drevnerusskij", sans-serif;
+    cursor: url("/image/Emmoochroom.cur"), pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 3px #041414;
+}
+
+.btn-small:hover {
+    background: var(--hover-color);
+    color: var(--text-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 8px #072424;
+}
+
+#game-id-display {
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background: var(--card-color);
+    border-radius: 10px;
+    border: 1px solid var(--o-color);
+    box-shadow: 0 3px 3px #041414;
+    font-size: 1.2rem;
+    color: var(--o-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+#game-id {
+  font-family: monospace;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--text-color);
+    letter-spacing: 2px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    justify-content: center;  /* ДОБАВЛЕНО: центрирование */
+    margin-bottom: 1rem;      /* ДОБАВЛЕНО: отступ */
+}
+
+#username-display {
+    font-weight: bold;
+    color: var(--text-color);
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+}
+
+#username-display::before {
+    content: "";
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    background-image: url("/image/Pu.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.no-games {
+    text-align: center;
+    color: var(--text-color);
+    font-style: italic;
+    padding: 2rem;
+    font-size: 1.3rem;
+    opacity: 0.7;
+}
+
+.finished {
+    animation: gamePulse 1.5s infinite;
+}
+
+@keyframes gamePulse {
+    0% {
+        opacity: 1;
+        text-shadow: 0 0 10px var(--o-color);
+    }
+    50% {
+        opacity: 0.8;
+        text-shadow: 0 0 20px var(--o-color), 0 0 30px var(--x-color);
+    }
+    100% {
+        opacity: 1;
+        text-shadow: 0 0 10px var(--o-color);
+    }
+}
+
+header h1 {
+    color: var(--text-color);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 3px 3px #041414;
+}
+
+#logout-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.2rem;
+    background: var(--card-color);
+    color: var(--x-color);
+    border: 1px solid var(--x-color);
+    border-radius: 8px;
+    font-family: "Drevnerusskij", sans-serif;
+    cursor: url("/image/Emmoochroom.cur"), pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 3px #041414;
+}
+
+#logout-btn:hover {
+    background: var(--hover-color);
+    color: var(--text-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 8px #072424;
+}
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 2rem auto;
+    max-width: 400px;
+}
+
+#game-board .cell {
+    aspect-ratio: 1;
+    min-width: 100px;
+    min-height: 100px;
+}
+
+#game-info {
+    margin: 1.5rem 0;
+}
+
+#status {
+    min-height: 3rem;
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        width: 95%;
+    }
+
+    .mode-selector label {
+        font-size: 1.2rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 1rem 2rem;
+        font-size: 1.3rem;
+    }
+
+    #game-board .cell {
+        min-width: 80px;
+        min-height: 80px;
+        font-size: 2rem;
+    }
+
+    .user-info {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}

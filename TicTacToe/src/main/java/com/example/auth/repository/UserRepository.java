@@ -1,0 +1,12 @@
+package com.example.auth.repository;
+
+import com.example.auth.model.User;
+import org.springframework.data.repository.CrudRepository;
+
+import java.util.Optional;
+import java.util.UUID;
+
+public interface UserRepository extends CrudRepository<User, UUID> {
+	Optional<User> findByLogin(String login);
+	boolean existsByLogin(String login);
+}
