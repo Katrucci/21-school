@@ -52,3 +52,6 @@ Desktop.ini
 *.p12
 application-*.properties
 application-*.yml
+
+build/
+application.properties
