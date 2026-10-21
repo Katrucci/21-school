@@ -1,0 +1,1 @@
+rootProject.name = "AQA3_UI"
